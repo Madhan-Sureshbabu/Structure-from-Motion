@@ -1,6 +1,6 @@
 #pragma once
 
-/// 从文件读入BAL dataset
+
 class BALProblem {
 public:
     /// load bal data from text file

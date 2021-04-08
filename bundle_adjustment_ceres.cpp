@@ -1,7 +1,7 @@
 #include <iostream>
 #include <ceres/ceres.h>
 #include "common.h"
-#include "SnavelyReprojectionError.h"
+#include "ReprojectionError.h"
 
 using namespace std;
 
@@ -38,7 +38,7 @@ void SolveBA(BALProblem &bal_problem)
 	{
 		ceres::CostFunction *cost_function;
 
-		cost_function = SnavelyReprojectionError::Create(observations[2*i + 0], observations[2*i + 1]);
+		cost_function = ReprojectionError::Create(observations[2*i + 0], observations[2*i + 1]);
 		ceres::LossFunction *loss_function = new ceres::HuberLoss(1.0);
 
 		double *camera = cameras + camera_block_size * bal_problem.camera_index()[i];

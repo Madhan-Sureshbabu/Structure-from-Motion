@@ -1,13 +1,13 @@
-#ifndef SnavelyReprojection_H
-#define SnavelyReprojection_H
+#ifndef Reprojection_H
+#define Reprojection_H
 
 #include <iostream>
 #include "ceres/ceres.h"
 #include "rotation.h"
 
-class SnavelyReprojectionError {
+class ReprojectionError {
 public:
-    SnavelyReprojectionError(double observation_x, double observation_y) : observed_x(observation_x),
+    ReprojectionError(double observation_x, double observation_y) : observed_x(observation_x),
                                                                            observed_y(observation_y) {}
 
     template<typename T>
@@ -58,8 +58,8 @@ public:
     }
 
     static ceres::CostFunction *Create(const double observed_x, const double observed_y) {
-        return (new ceres::AutoDiffCostFunction<SnavelyReprojectionError, 2, 9, 3>(
-            new SnavelyReprojectionError(observed_x, observed_y)));
+        return (new ceres::AutoDiffCostFunction<ReprojectionError, 2, 9, 3>(
+            new ReprojectionError(observed_x, observed_y)));
     }
 
 private:
@@ -67,5 +67,5 @@ private:
     double observed_y;
 };
 
-#endif // SnavelyReprojection.h
+#endif // Reprojection.h
 
